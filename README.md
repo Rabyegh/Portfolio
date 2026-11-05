@@ -1,103 +1,143 @@
-# Charan Munur — Portfolio
+# Mohamed Rabie Ghediri — Portfolio
 
-A minimal, editorial developer portfolio built with React 19, Vite, TypeScript, and Tailwind CSS v4. Features responsive case-study detail pages, open-source contribution tracking, technical writing archive, interactive GitHub activity graph, and privacy-preserving visitor counter.
+Personal portfolio for **Mohamed Rabie Ghediri**, a final-year Data Engineering and Decision Systems engineering student interested in data engineering, machine learning, NLP, and generative AI.
 
----
+The portfolio presents my technical skills, professional experience, education, projects, CVs, and contact links in a responsive editorial-style interface.
 
-## Stack
+## Highlights
 
-- **Framework & Build**: React 19, Vite, TypeScript
-- **Styling & UI**: Tailwind CSS v4, shadcn/ui, Radix UI primitives
-- **Motion & Animation**: motion/react, Framer Motion, Lenis smooth scroll
-- **Routing**: React Router v7
-- **Theming**: `next-themes` (system, light, and dark mode support)
-- **Backend & API**: Vercel Serverless Functions (`api/`)
-- **Database**: Supabase (privacy-preserving visitor tracking)
-- **Package Manager**: Bun
+- English and French language switching with persisted language preference
+- Light, dark, and system theme modes
+- Responsive layout for mobile, tablet, and desktop
+- Smooth scrolling between homepage sections
+- Technologies section with animated and expanded views
+- Experience timeline for Yonnov'IA and Otospex Solutions
+- Educational path with university and school logos
+- Project cards with dedicated detail pages and GitHub links
+- Data Engineering and AI CVs available directly from the homepage
+- Rotating quote section
+- GitHub, LinkedIn, and email contact links
+- Vercel serverless API endpoints for GitHub and visitor-related functionality
 
----
+## Sections
 
-## Routes
+The homepage is organized in this order:
 
-- `/` — Homepage (Hero, Skills, Featured Projects, Open Source Timeline, Blogs, Uses preview, GitHub Activity, Quote)
-- `/projects` — All projects index
-- `/projects/:slug` — Project detail & case study
-- `/opensource` — Open source contributions index
-- `/opensource/:slug` — Open source contribution detail & PR/Issue list
-- `/blogs` — Technical articles & writing archive
-- `/blogs/:slug` — Blog article reader with Markdown rendering
-- `/uses` — Developer setup, hardware, editor configuration & tools
-- `/contact` — Contact page & social links
+1. Hero
+2. Technologies
+3. Experience
+4. Projects
+5. Educational Path
+6. Quotes
 
----
+## Project Routes
 
-## Features & Architecture
+- `/` — Portfolio homepage
+- `/projects` — All projects
+- `/projects/:slug` — Project detail page
+- `/contact` — Contact page
+- `/blogs` — Blog route
+- `/blogs/:slug` — Blog detail page
+- `/uses` — Tools and setup route
+- `/opensource` — Open-source route
+- `/opensource/:slug` — Open-source detail page
 
-- **Editorial Layout**: Narrow `max-w-3xl` reading column for high legibility across mobile and desktop.
-- **Monochrome Utility Aesthetic**: Low-weight typography, dashed borders, clean line tabs, and subtle motion reveals.
-- **Data-Driven Content**: All portfolio content (projects, open source PRs, blogs, uses, tech stack) is decoupled into `src/data/*.ts`.
-- **Responsive Typography System**: Proportional font scaling across small mobile screens (`< sm`) and desktop screens.
-- **Visitor Tracking**: Client-side hashed fingerprint (`src/lib/fingerprint.ts`) sent to Vercel serverless function (`api/visitors.ts`) backed by Supabase.
-- **GitHub Activity Graph**: Interactive contribution grid with month labels, tooltip popovers, and expandable repository panel.
+## Featured Projects
 
----
+- **RegulaRAG** — Regulatory intelligence and compliance analysis using Hybrid RAG, GraphRAG, Elasticsearch, pgvector, Neo4j, FastAPI, and React.
+- **AI Pharmaceutical Product Recognition & Price Comparison** — Pharmaceutical image recognition and product comparison using YOLOv11, PaddleOCR, LLaMA, Groq, and Elasticsearch.
+- **Real-Time Flight Delay Prediction System** — Streaming data and flight delay prediction using Kafka, Spark Structured Streaming, Cassandra, MLflow, and Grafana.
+- **AutoMarket Intel** — Automotive market data platform using DuckDB, dbt, Parquet, AWS S3, Terraform, and GitHub Actions.
+- **CropWatch** — Geospatial data and AI platform for agricultural monitoring using satellite, climate, rainfall, and soil data.
+
+## Technology Stack
+
+- **Frontend:** React 19, TypeScript, Vite
+- **Styling:** Tailwind CSS v4, shadcn/ui, Radix UI
+- **Routing:** React Router
+- **Animation:** Framer Motion
+- **Smooth scrolling:** Lenis
+- **Themes:** next-themes
+- **Icons:** Lucide React and React Icons
+- **Backend endpoints:** Vercel serverless functions
+- **Data and content:** TypeScript data modules in `src/data`
 
 ## Local Development
 
 ### Prerequisites
 
-- [Bun](https://bun.sh)
-- [Vercel CLI](https://vercel.com/docs/cli) (optional, for running local serverless API endpoints)
+- Node.js and npm
+- Optional: Vercel CLI for local serverless API endpoints
 
-### Setup
-
-1. **Install Dependencies**:
-   ```bash
-   bun install
-   ```
-
-2. **Environment Variables** (Optional, for visitor counter & GitHub rate limits):
-   Create `.env` in the root directory:
-   ```env
-   SUPABASE_URL=https://<your-project-ref>.supabase.co
-   SUPABASE_SERVICE_ROLE_KEY=<your-service-role-key>
-   # GITHUB_TOKEN=<your-github-personal-access-token> # Optional: raises API rate limit to 5000 req/hr
-   ```
-
-3. **Start Frontend Dev Server**:
-   ```bash
-   bun run dev
-   ```
-
-4. **Start Vercel API** (Optional, for visitor counter endpoint):
-   ```bash
-   vercel dev --listen 3000
-   ```
-
-### Production Build
+### Installation
 
 ```bash
-bun run build
+npm install
 ```
 
----
+### Start the development server
+
+```bash
+npm run dev
+```
+
+The frontend is then available at `http://localhost:5173`.
+
+### Create a production build
+
+```bash
+npm run build
+```
+
+### Preview the production build
+
+```bash
+npm run preview
+```
+
+## CV Files
+
+The CV files are stored in `public/cv/` so that Vite includes them in production builds:
+
+- [Data Engineering CV](public/cv/Mohamed-Rabie-Ghediri-Data-Cv.pdf)
+- [AI Engineering CV](public/cv/Mohamed-Rabie-Ghediri-AI-CV.pdf)
 
 ## Project Structure
 
-```
+```text
 portfolio/
-├── api/                  # Vercel serverless API functions
-│   ├── github.ts        # GitHub contribution data fetcher
-│   └── visitors.ts      # Visitor counter endpoint (Supabase)
+├── api/                         # Vercel serverless API functions
 ├── public/
-│   └── images/          # Static assets & dark/light SVG logos
-└── src/
-    ├── components/       # Reusable UI & section components
-    │   ├── ui/          # Radix & shadcn primitives (tabs, accordion, button)
-    │   └── helpers/     # FadeIn animation, TechIcon, SmoothScroll
-    ├── data/            # Portfolio content (projects, opensource, blogs, uses)
-    ├── lib/             # Shared utilities & fingerprint generator
-    ├── pages/            # Route page components
-    ├── main.tsx          # Application entrypoint & Router config
-    └── index.css        # Global CSS variables & keyframe animations
+│   ├── cv/                      # Public Data and AI CV files
+│   ├── social/                  # Social media icons
+│   └── tech/                    # Technology logos
+├── src/
+│   ├── components/              # Reusable UI and portfolio sections
+│   ├── data/                    # Projects, technologies, quotes, and social links
+│   ├── pages/                   # Route-level page components
+│   ├── providers/               # Theme provider
+│   ├── features/                # Feature-specific UI
+│   ├── i18n.tsx                 # English/French translations and language state
+│   ├── App.tsx                  # Homepage section composition
+│   └── main.tsx                 # Application entry point and routing
+├── index.html
+├── package.json
+└── vite.config.ts
 ```
+
+## Deployment
+
+The project is configured for deployment on Vercel. Build the project with:
+
+```bash
+npm run build
+```
+
+When deploying, make sure the `public/` directory is included so the CV files and static logos remain available.
+
+## Contact
+
+- GitHub: [github.com/Rabyegh](https://github.com/Rabyegh)
+- LinkedIn: [Mohamed Rabie Ghediri](https://www.linkedin.com/in/mohamed-rabie-ghdiri-51ab41329/)
+- Email: [rabye.ghd@gmail.com](mailto:rabye.ghd@gmail.com)
+
